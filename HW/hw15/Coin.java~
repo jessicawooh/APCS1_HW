@@ -1,0 +1,36 @@
+public class Coin {
+    public  double value;
+    public String name;
+    public String upFace;
+    public int flipCtr;
+    public int headsCtr;
+    public int tailsCtr;
+    public double bias;
+
+    public Coin(){
+	value = 0.0;
+	name = "";
+	upFace = "heads";
+	flipCtr = 0;
+	headsCtr = 0;
+    }
+
+    public Coin(String denom){
+    }
+    
+    public Coin(String denom, String face){
+    }
+    
+    public String flip(){
+    }
+    
+    public String toString(){
+    }
+
+    public boolean equals(){
+    }
+
+    public void assignValue(int newValue){
+    }
+    
+}

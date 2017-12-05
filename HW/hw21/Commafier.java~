@@ -1,0 +1,19 @@
+/*
+Jessica Wu
+APCS1 pd8
+HW21 -- Karmacomma,
+2017-10-24 
+*/
+
+public class Commafier {
+    public static  String commafyR(int){
+    }
+    public static String commafyF(int){
+    }
+    public static void main(String[] args){
+	for(int x: args){
+	    System.out.print(commafyR(x));
+	    System.out.print(commafyF(x));
+	}
+    }
+}

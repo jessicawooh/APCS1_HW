@@ -1,0 +1,22 @@
+public class Repeater {
+	public String fenceW(int numPosts){
+		String posts = "|";
+		while (numPosts > 1){
+		posts += "--|";
+		numPosts -= 1;
+
+}
+
+} 
+
+   public String fenceR(int numPosts){
+	String posts = "";
+	if (numPosts == 1) {
+	    return "
+	}
+    }
+	public static void main(String[] args){
+		fenceW(3);
+}
+
+}

@@ -1,0 +1,94 @@
+//Jessica Wu
+//APCS1 pd8
+//HW36 -- Be Rational
+//2017-11-19
+
+public class Rational {
+
+    //Instance variables for the numerator and denominator
+    private int numerator;
+    private int denominator;
+
+    //Creates a new Rational with the value of 0/1
+    public Rational() {
+	numerator = 0;
+	denominator = 1;
+    }//end Rational()
+
+    
+    //takes 2 parameters, one for the numerator, one for the denominator
+    //if an invalid denominator is attempted, should print a message and set the number to 0/1
+    public Rational(int a, int b) {
+	this();
+	if (b == 0) {
+	    System.out.println("Error: Divide be zero");}
+	else {
+	    numerator = a;
+	    denominator = b;}
+    }//end Rational()
+
+
+    //returns a string representation of the rational number
+    public String toString() {
+	return numerator + "/" + denominator;
+    }//end toString()
+
+
+    //Returns a floating point value of the number
+    //Uses the most precise floating point primitive
+    public double floatValue() {
+	return (double) numerator / denominator; //take note of parentheses of division/typecasting
+    }//end floatValue()
+
+
+    //Takes 1 Rational object as a parameter and multiplies it by this Rational object
+    //Does not return any value
+    //Should modify this object and leave the parameter alone
+    //Need not reduce the fraction
+    public void multiply(Rational a) {
+	numerator *= this.numerator;  //using this.numerator instead of a.numerator makes it more clear 
+	denominator *= this.denominator;
+    }//end multiply()
+
+
+    //Works the same as multiply, except the operation is division
+    public void divide(Rational a) {
+	numerator *= this.denominator;
+	denominator *= this.numerator;
+    }//end divide()
+
+    //test
+    public static void main(String[] args) {
+	Rational r = new Rational(2,3); //Stores the rational number 2/3
+	System.out.println(r);//2/3
+	System.out.println(r.floatValue());//0.6666666667
+
+	System.out.println("---------------------------");
+	
+	Rational s = new Rational(1,2); //Stores the rational number 1/2
+	System.out.println(s);//1/2
+
+	System.out.println("---------------------------");
+
+	Rational p = new Rational();
+	System.out.println(p);//0/1
+
+	System.out.println("---------------------------");
+
+	Rational q = new Rational(1, 0);//error
+	System.out.println(q);//0/1
+
+	System.out.println("---------------------------");
+
+	r.multiply(s); //Multiplies r by s, changes r to 2/6.  s remains 1/2
+	System.out.println(s);//1/2
+	System.out.println(r);//2/6
+
+	System.out.println("---------------------------");
+
+	r.divide(s); //Divides r by s, changes r to 4/6.  s remains 1/2
+	System.out.println(s);//1/2
+	System.out.println(r);//4/6
+    }//end main()
+
+}//end class Rational
