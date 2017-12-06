@@ -1,3 +1,8 @@
+//Jessica Wu 
+//APCS1 pd8
+//HW47 -- Ascending 
+//2017-12-05
+
 /********************************
  * class OrderedArrayList
  * wrapper class for ArrayList.
@@ -10,74 +15,76 @@ import java.util.ArrayList;
 
 public class OrderedArrayList
 {
-  // instance of class ArrayList, holding objects of type Comparable 
-  // (ie, instances of a class that implements interface Comparable)
-  private ArrayList<Comparable> _data;
+    // instance of class ArrayList, holding objects of type Comparable 
+    // (ie, instances of a class that implements interface Comparable)
+    private ArrayList<Comparable> _data;
 
 
-  // default constructor initializes instance variable _data
-  public OrderedArrayList()
-  {
-    // *** YOUR IMPLEMENTATION HERE ***
-  }
+    // default constructor initializes instance variable _data
+    public OrderedArrayList()
+    {
+	_data = new ArrayList<Comparable>();
+    }
 
 
-  public String toString()
-  {
-    // *** YOUR IMPLEMENTATION HERE ***
-    return ""; //placeholder
-  }
+    public String toString()
+    {
+	return _data.toString(); 
+    }
 
 
-  public Comparable remove( int index )
-  {	
-    // *** YOUR IMPLEMENTATION HERE ***
-    return ""; //placeholder 
-  }
+    public Comparable remove( int index )
+    {	
+	return _data.remove(index);
+    }
 
 
-  public int size()
-  { 
-    // *** YOUR IMPLEMENTATION HERE ***
-    return -1; //placeholder 
-  }
+    public int size()
+    { 
+	return _data.size();
+    }
 
     
-  public Comparable get( int index )
-  { 
-    // *** YOUR IMPLEMENTATION HERE ***
-    return ""; //placeholder  
-  }
+    public Comparable get( int index )
+    { 
+	return _data.get(index);
+    }
 
 
-  public void add(Comparable newVal)
-  { 
-    // *** YOUR IMPLEMENTATION HERE ***
-  }
+    public void add(Comparable newVal)
+    { 
+	for (int i = 0; i < _data.size(); i++) {
+	    //if newVal is smaller than than _data[i],add newVal to _data[i] 
+	    if (newVal.compareTo(_data.get(i)) <= 0) {
+		_data.add(i, newVal);
+		break ; }
+	}
+	_data.add(newVal); //if newVal bigger than everything, add to end
+    }
 
 
 
-  // main method solely for testing purposes
-  public static void main( String[] args )
-  {
-    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// main method solely for testing purposes
+public static void main( String[] args )
+{
     OrderedArrayList Franz = new OrderedArrayList();
 
     // testing linear search
     for( int i = 0; i < 15; i++ )
-      Franz.add( (int)( 50 * Math.random() ) );
+	Franz.add( (int)( 50 * Math.random() ) );
     System.out.println( Franz );
 
     //check for sorted-ness
     //if msg does not appear, list was sorted
     for( int i=0; i<Franz.size()-1; i++ ) {
-      System.out.println("at i: " + Franz.get(i) );
-      if ( Franz.get(i).compareTo(Franz.get(i+1)) > 0 ) {
-        System.out.println( " *** NOT sorted *** " );
-        break;
-      }
+	System.out.println("at i: " + Franz.get(i) );
+	if ( Franz.get(i).compareTo(Franz.get(i+1)) > 0 ) {
+	    System.out.println( " *** NOT sorted *** " );
+	    break;
+	}
     }
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-  }//end main()
+}//end main()
 
 }//end class OrderedArrayList
