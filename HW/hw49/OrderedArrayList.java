@@ -1,0 +1,141 @@
+//Jessica Wu 
+//APCS1 pd8
+//HW48 -- Halving the Halves 
+//2017-12-07
+
+/*
+  addBin(), which employs a binary search to locate the point of insertion for 
+  a new element.
+*/
+
+/********************************
+ * class OrderedArrayList
+ * wrapper class for ArrayList.
+ * Imposes the restriction that stored items 
+ * must remain sorted in ascending order
+ ********************************/
+
+//ArrayList's implementation is in the java.util package
+import java.util.ArrayList;
+
+public class OrderedArrayList
+{
+    // instance of class ArrayList, holding objects of type Comparable 
+    // (ie, instances of a class that implements interface Comparable)
+    private ArrayList<Comparable> _data;
+
+
+    // default constructor initializes instance variable _data
+    public OrderedArrayList()
+    {
+	_data = new ArrayList<Comparable>();
+    }
+
+
+    public String toString()
+    {
+	return _data.toString(); 
+    }
+
+
+    public Comparable remove( int index )
+    {	
+	return _data.remove(index);
+    }
+
+
+    public int size()
+    { 
+	return _data.size();
+    }
+
+    
+    public Comparable get( int index )
+    { 
+	return _data.get(index);
+    }
+
+
+    public void add(Comparable newVal)
+    { 
+	for (int i = 0; i < _data.size(); i++) {
+	    //if newVal is smaller than than _data[i],add newVal to _data[i] 
+	    if (newVal.compareTo(_data.get(i)) <= 0) {
+		_data.add(i, newVal);
+		break ; }
+	}
+	_data.add(newVal); //if newVal bigger than everything, add to end
+    }
+
+    public void addBin(Comparable newVal){
+	int _lo = 0;
+	int _hi = _data.size() - 1;
+	int _mid = (_lo + _hi) / 2;
+
+	//newVal less than everything in _data
+	if (newVal.compareTo(_data.get(0)) <= 0){
+	    _data.add(0, newVal);
+	    return;
+	}
+	
+	//newVal greater than everything in _data
+	else if (newVal.compareTo(_data.get(_data.size() - 1)) > 0){
+	    _data.add(_data.size(), newVal);
+	    return;
+	}
+	
+	while (true) { //thanks Connie!
+	    //range is just one number 
+	    if (_lo == _hi) {
+		_data.add(_mid, newVal);
+		return;
+	    }
+
+	    //newVal equal to _mid
+	    if (newVal.compareTo(_data.get(_mid)) == 0){
+		_data.add(_mid, newVal);
+		return;
+	    }
+
+	    //newVal is greater than _mid
+	    else if (newVal.compareTo(_data.get(_mid)) > 0){
+		_lo = _mid + 1;
+		_mid = (_lo + _hi) / 2;
+	    }
+
+	    //newVal is smaller than _mid
+	    else if (newVal.compareTo(_data.get(_mid)) < 0){
+		_hi = _mid;
+		_mid = (_lo + _hi) / 2;
+	    }
+	}
+    }//end addBin()
+
+
+
+
+    // main method solely for testing purposes
+    public static void main( String[] args )
+    {
+	OrderedArrayList Franz = new OrderedArrayList();
+
+	// testing binary search
+	for( int i = 0; i < 15; i++ )
+	    Franz.addBin( (int)( 50 * Math.random() ) );
+	System.out.println( Franz );
+
+	//check for sorted-ness
+	//if msg does not appear, list was sorted
+	for( int i=0; i<Franz.size()-1; i++ ) {
+	    System.out.println("at i: " + Franz.get(i) );
+	    if ( Franz.get(i).compareTo(Franz.get(i+1)) > 0 ) {
+		System.out.println( " *** NOT sorted *** " );
+		break;
+	    }
+	}
+
+	/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    }//end main()
+
+}//end class OrderedArrayList
